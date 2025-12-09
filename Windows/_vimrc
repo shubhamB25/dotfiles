@@ -1,0 +1,112 @@
+" ===========================
+" Vim configuration for Visual Studio on Windows
+" ===========================
+
+
+" ===========================
+" BASIC EDITOR BEHAVIOR
+" ===========================
+let mapleader=" "
+
+set clipboard=unnamed
+set cursorline
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set nowrap
+set number
+set relativenumber
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set backspace=indent,eol,start
+set laststatus=0
+set list
+
+
+nnoremap Q :echo "Vim is working!"<CR>
+
+" ===========================
+" GENERAL KEY MAPPINGS
+" ===========================
+inoremap jj <Esc>
+nnoremap <C-s> :w<CR>
+inoremap <C-s> <Esc>:w<CR>a
+nnoremap <space> :nohlsearch<CR>
+
+" Move line up/down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+
+" ===========================
+" BUFFER / WINDOW NAVIGATION
+" ===========================
+" Cycle tabs
+nnoremap <C-l> :vsc Window.NextDocumentWindow<CR>
+nnoremap <C-h> :vsc Window.PreviousDocumentWindow<CR>
+
+" Switch between splits (rare in VS but nice)
+nnoremap <C-w>h <C-w>h
+nnoremap <C-w>l <C-w>l
+
+" ===========================
+" C# + VISUAL STUDIO ACTIONS
+" ===========================
+" Format document
+nnoremap <leader>fd :vsc Edit.FormatDocument<CR>
+
+" Rename symbol
+nnoremap <leader>rn :vsc Edit.Rename<CR>
+
+" Quick actions (. -> like ctrl+. in VS)
+nnoremap <leader>. :vsc Edit.QuickActionsForPosition<CR>
+
+" Auto-add using
+nnoremap <leader>u :vsc Edit.AddUsing<CR>
+
+" Code cleanup (if available)
+nnoremap <leader>ca :vsc Edit.RemoveAndSort<CR>
+
+" ===========================
+" C# NAVIGATION COMMANDS
+" ===========================
+nnoremap gd :vsc Edit.GoToDefinition<CR>
+nnoremap gp :vsc EditorContextMenus.CodeWindow.PeekDefinition<CR>
+nnoremap gr :vsc Edit.FindAllReferences<CR>
+nnoremap K  :vsc Edit.QuickInfo<CR>
+nnoremap ]e :vsc View.NextError<CR>
+nnoremap [e :vsc View.PreviousError<CR>
+
+" ===========================
+" BUILD / RUN / DEBUG
+" ===========================
+nnoremap <leader>b :vsc Build.BuildSolution<CR>
+nnoremap <leader>r :vsc Debug.StartDebugging<CR>
+nnoremap <leader>t :vsc TestExplorer.RunAllTests<CR>
+nnoremap <leader>q :vsc Debug.StopDebugging<CR>
+nnoremap <leader>db :vsc Debug.ToggleBreakpoint<CR>
+
+" ===========================
+" SEARCH & NAVIGATION
+" ===========================
+" Search classes/symbols/files
+nnoremap <leader>sf :vsc Edit.GoToFile<CR>
+nnoremap <leader>ss :vsc Edit.GoToSymbol<CR>
+nnoremap <leader>sl :vsc Edit.GoToLine<CR>
+
+" ===========================
+" BASIC C# SNIPPETS
+" ===========================
+iabbrev pprop  public TYPE_HERE { get; set; }
+iabbrev ptask  public async Task 
+iabbrev pclass public class 
+iabbrev precord public record 
+
+
+" ===========================
+" NAVIGATE BACK/FORWARD
+" ===========================
+nnoremap <C-o> :vsc View.NavigateBackward<CR>
+nnoremap <C-i> :vsc View.NavigateForward<CR>
